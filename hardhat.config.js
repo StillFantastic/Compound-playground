@@ -1,9 +1,18 @@
 require("@nomiclabs/hardhat-waffle");
+require('dotenv').config({ path: require('find-config')('.env') });
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
+  networks: {
+    hardhat: {
+      forking: {
+        url: process.env.ETH_ARCHIVE_NODE,
+        enabled: true,
+      }
+    },
+  },
   solidity: {
     compilers: [
       {
